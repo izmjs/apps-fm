@@ -47,7 +47,7 @@ AppSchema.methods.regenerateKey = async function regenerateKey() {
   const key = (await randomBytes$(secretLength)).toString('hex');
   const secret = createHmac(hashAlgo, this.id)
     .update(key)
-    .digest('hex')
+    .digest('base64')
     .toString();
 
   this.set('secret', secret);
