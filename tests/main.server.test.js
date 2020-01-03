@@ -37,15 +37,15 @@ describe('tests for module "modules:apps-fm"', () => {
     it('I am not allowed to call the API if I do not have the IAM "modules:apps-fm:ok"', async () => {
       await createUser(credentials, []);
       await agent.post('/api/v1/auth/signin').send(credentials).expect(200);
-      await agent.get(`${prefix}/apps-fm/ok`).expect(403);
+      await agent.get(`${prefix}/apps-fm`).expect(403);
     });
 
     it('I am allowed to call the API if I have the IAM "modules:apps-fm:ok"', async () => {
       await createUser(credentials, [
-        'modules:apps-fm:ok',
+        'modules:apps-fm:main:list',
       ]);
       await agent.post('/api/v1/auth/signin').send(credentials).expect(200);
-      await agent.get(`${prefix}/apps-fm/ok`).expect(200);
+      await agent.get(`${prefix}/apps-fm`).expect(200);
     });
   });
 
