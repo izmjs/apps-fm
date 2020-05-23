@@ -1,7 +1,9 @@
-/* eslint-disable import/no-dynamic-require */
 const request = require('supertest');
-const { resolve } = require('path');
 const { model, connection } = require('mongoose');
+const { createUser } = require('@helpers/utils');
+const express = require('@config/lib/express');
+const { prefix } = require('@config/index').app;
+
 const {
   it,
   before,
@@ -10,11 +12,6 @@ const {
 } = require('mocha');
 
 const User = model('User');
-
-const { createUser } = require(resolve('helpers/utils'));
-
-const express = require(resolve('./config/lib/express'));
-const { prefix } = require(resolve('config'));
 
 let app;
 const credentials = {

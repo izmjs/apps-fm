@@ -2,12 +2,10 @@
  * Module dependencies.
  */
 const { Schema, model } = require('mongoose');
-const { resolve } = require('path');
 const { randomBytes, createHmac, getHashes } = require('crypto');
 const { promisify } = require('util');
+const { lib, appsFm } = require('@config/index');
 
-// eslint-disable-next-line import/no-dynamic-require
-const { lib, appsFm } = require(resolve('./config'));
 const { timestamps } = lib.mongoose;
 const { secretLength, hashAlgo } = appsFm;
 

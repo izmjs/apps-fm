@@ -2,52 +2,13 @@
   "name": "apps-fm",
   "version": "0.1.0",
   "license": "ISC",
-  "scripts": {
-    "test": "node ../../scripts/run-tests apps-fm",
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "format:write": "prettier **/*.{json,md} --write",
-    "format:test": "prettier **/*.{json,md} --list-different",
-    "release:major": "release-it major",
-    "release:minor": "release-it minor",
-    "release:patch": "release-it patch"
-  },
   "description": "The apps-fm module",
   "keywords": [
     "apps-fm",
-    "boilerplate-fm",
     "functional-module"
   ],
   "repository": {
     "type": "github",
     "url": "https://github.com/izmjs/apps-fm.git"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^8.3.3",
-    "@commitlint/config-conventional": "^8.3.3",
-    "lint-staged": "^9.5.0",
-    "husky": "^3.1.0",
-    "release-it": "^12.4.3",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.19.1"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "**/*.{json,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "post-merge": "npm i",
-      "pre-commit": "lint-staged && npm test",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }
