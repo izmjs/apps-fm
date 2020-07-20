@@ -1,17 +1,13 @@
 const request = require('supertest');
 const { model, connection } = require('mongoose');
-const { createUser } = require('@helpers/utils');
-const express = require('@config/lib/express');
-const { prefix } = require('@config/index').app;
-
-const {
-  it,
-  before,
-  describe,
-  afterEach,
-} = require('mocha');
+const { it, before, describe, afterEach } = require('mocha');
 
 const User = model('User');
+
+const { createUser } = require('@helpers/utils');
+
+const express = require('@config/lib/express');
+const { prefix } = require('@config/index');
 
 let app;
 const credentials = {
@@ -38,17 +34,13 @@ describe('tests for module "modules:apps-fm"', () => {
     });
 
     it('I am allowed to call the API if I have the IAM "modules:apps-fm:ok"', async () => {
-      await createUser(credentials, [
-        'modules:apps-fm:main:list',
-      ]);
+      await createUser(credentials, ['modules:apps-fm:main:list']);
       await agent.post('/api/v1/auth/signin').send(credentials).expect(200);
       await agent.get(`${prefix}/apps-fm`).expect(200);
     });
   });
 
   afterEach(async () => {
-    await Promise.all([
-      User.remove(),
-    ]);
+    await Promise.all([User.deleteMany({})]);
   });
 });
